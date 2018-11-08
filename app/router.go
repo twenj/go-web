@@ -1,8 +1,8 @@
-package route
+package app
 
 import (
-	"fmt"
 	"github.com/gorilla/mux"
+	"net/http"
 )
 
 type Route struct {
@@ -13,24 +13,24 @@ type Route struct {
 }
 
 type Routes []Route
+type AppRouter = mux.Router
 
-func NewRouter() *mux.Router {
-	router := mux.NewRouter().StrictSlash(true)
-	for _, route := range routes {
+var router *mux.Router
+
+func init() {
+	router = mux.NewRouter().StrictSlash(true)
+}
+
+func AddRoutes(addRoutes Routes) {
+	for _, route := range addRoutes {
 		router.
 			Methods(route.Method).
 			Path(route.Pattern).
 			Name(route.Name).
 			Handler(route.HandlerFunc)
 	}
-	return router
 }
 
-var routes = Routes{
-	Route{
-		"Index",
-		"GET",
-		"/",
-		Index,
-	},
+func GetRouter() *AppRouter {
+	return router
 }
