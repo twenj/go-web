@@ -1,19 +1,27 @@
 package go_web
 
-import(
+import (
 	"net/http"
 )
 
 type ControllerRegister struct {
-	routers map[string]*Tree
+	routers string
 }
 
 func NewControllerRegister() *ControllerRegister {
-	return &ControllerRegister() *ControllerRegister {
-		routers: make(map[string]*Tree),
+	return &ControllerRegister {
+		routers: "",
 	}
 }
 
-func (p *ControllerRegister) ServeHttp(w http.ResponseWriter, r *http.Request) {
-	startTime := time.Now()
-} 
+func (p *ControllerRegister) ServeHttp(rw http.ResponseWriter, r *http.Request) {
+
+}
+
+func (p *ControllerRegister) Add(pattern string, c ControllerInterface) {
+	p.addWithMethodParams(pattern, c)
+}
+
+func (p *ControllerRegister) addWithMethodParams(patter string, c ControllerInterface) {
+	
+}
