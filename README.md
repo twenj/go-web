@@ -1,2 +1,1 @@
-# go-app
 # go-web
